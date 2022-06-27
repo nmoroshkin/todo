@@ -1,7 +1,6 @@
 @import './libs/normalize';
 
 body {
-    // background-color: #060b23;
     background-color: #576574;
     color: #dfe4ea;
     font-family: 'Roboto';
@@ -17,7 +16,7 @@ body {
 
 .container {
     margin: auto;
-    width: 40%;
+    width: 70%;
     display: flex;
     flex-direction: column;
 }
@@ -83,5 +82,39 @@ body {
         &:hover {
             top: -1px;
         }
+    }
+}
+
+@media (max-width: 1200px) {
+    #root {
+        max-width: 80%;
+    }
+    .container {
+        width: 100%;
+    }
+    .todoList {
+        width: 70%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 900px) {
+    #root {
+        max-width: 100%;
+    }
+    .todoList {
+        width: 70%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 580px) {
+    .inputTodo {
+        margin-bottom: 20px;
+    }
+    .todoList {
+        height: 50vh;
+        overflow: auto;
+        width: 100%;
     }
 }
