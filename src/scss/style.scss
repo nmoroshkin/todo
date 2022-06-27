@@ -1,0 +1,87 @@
+@import './libs/normalize';
+
+body {
+    // background-color: #060b23;
+    background-color: #576574;
+    color: #dfe4ea;
+    font-family: 'Roboto';
+}
+
+#root {
+    position: relative;
+    top: 100px;
+    padding: 20px;
+    max-width: 50%;
+    margin: 0 auto;
+}
+
+.container {
+    margin: auto;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.inputTodo {
+    align-self: center;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & input {
+        color: #ff9ff3;
+    }
+}
+
+.todoList {
+    height: 70vh;
+    overflow: auto;
+    // .todoList__tasks
+
+    // .todoList__task
+
+    &__task {
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+.task {
+    // .task__body
+
+    &__body {
+        flex: 1;
+        margin-right: 5px;
+        display: inline-flex;
+        align-items: center;
+
+        & input {
+            color: #ff9ff3;
+        }
+
+        & span:last-child {
+            display: inline-block;
+            width: 100%;
+            &.checked {
+                text-decoration: line-through;
+                opacity: 0.6;
+                color: #ff9ff3;
+            }
+        }
+    }
+}
+.checkbox {
+    margin-right: 5px;
+}
+.delete {
+    &__btn {
+        position: relative;
+        top: 0;
+        cursor: pointer;
+        transition: top 0.2s ease-in-out;
+        &:hover {
+            top: -1px;
+        }
+    }
+}
