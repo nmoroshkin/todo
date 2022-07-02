@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import TextField from '@mui/material/TextField';
 
-import { addTodo } from '../../redux/slices/todoSlice';
+import { addTodo } from '../../redux/slices/todo/slice';
 
 const MyInput = ({ value, setValue }) => {
     const dispatch = useDispatch();

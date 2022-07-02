@@ -1,7 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getTodoFromLS } from '../../../utils/getTodoFromLS';
+
+const tasks = getTodoFromLS();
 
 const initialState = {
-    tasks: [],
+    tasks,
 };
 
 const todoSlice = createSlice({
@@ -15,7 +18,6 @@ const todoSlice = createSlice({
             state.tasks = state.tasks.filter((task) => task.id !== action.payload);
         },
         changeTodo(state, action) {
-            // console.log(action.payload);
             const findIndex = state.tasks.findIndex((obj) => obj.id === action.payload.id);
             state.tasks = state.tasks.map((task) => {
                 if (findIndex >= 0) {

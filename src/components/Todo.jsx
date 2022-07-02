@@ -2,14 +2,13 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
-import { removeTodo, checkTodo, changeTodo } from '../redux/slices/todoSlice';
+import { removeTodo, checkTodo, changeTodo } from '../redux/slices/todo/slice';
 import MyCheckBox from './MyCheckBox';
 import { ListItem, ListItemButton, TextField } from '@mui/material';
 
 const Todo = ({ id, title, statusCheck }) => {
     const dispatch = useDispatch();
 
-    const ref = React.useRef();
     const [change, setChange] = React.useState(false);
     const [changeValue, setChangeValue] = React.useState(title);
 
