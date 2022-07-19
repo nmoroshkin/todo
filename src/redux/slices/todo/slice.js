@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getTodoFromLS } from '../../../utils/getTodoFromLS';
+// import { getTodoFromLS } from '../../../utils/getTodoFromLS';
 
-const tasks = getTodoFromLS();
+// const tasks = getTodoFromLS();
 
 const initialState = {
-    tasks,
+    tasks: [],
 };
 
 const todoSlice = createSlice({
