@@ -2,11 +2,17 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
-import { removeTodo, checkTodo, changeTodo } from '../redux/slices/todo/slice';
 import MyCheckBox from './MyCheckBox';
-import { ListItem, ListItemButton, TextField } from '@mui/material';
+import { removeTodo, checkTodo, changeTodo } from '../redux/slices/todo/slice';
+import { Box, ListItem, ListItemButton, TextField, Typography } from '@mui/material';
 
-const Todo = ({ id, title, statusCheck }) => {
+type TodoProps = {
+    id: number;
+    title: string;
+    statusCheck: boolean;
+};
+
+const Todo: React.FC<TodoProps> = ({ id, title, statusCheck }) => {
     const dispatch = useDispatch();
 
     const [change, setChange] = React.useState(false);
@@ -24,7 +30,7 @@ const Todo = ({ id, title, statusCheck }) => {
         setChange(!change);
     };
 
-    const saveChanges = (e) => {
+    const saveChanges = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key !== 'Enter') {
             if (e.key === 'Escape') {
                 setChange(!change);
@@ -38,16 +44,34 @@ const Todo = ({ id, title, statusCheck }) => {
 
     return (
         <ListItem component="div">
-            <ListItemButton className="todoList__task" component="div">
-                <div className="task__body">
+            <ListItemButton
+                component="div"
+                sx={{
+                    padding: '5px',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    maxWidth: '70%',
+                    margin: '0 auto',
+                }}
+            >
+                <Box
+                    sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        width: '100%',
+                    }}
+                >
                     <MyCheckBox statusCheck={statusCheck} handleChecked={handleChecked} />
                     {!change ? (
-                        <span
+                        <Typography
                             onDoubleClick={esketitChange}
+                            component="div"
                             className={statusCheck ? 'checked' : ''}
+                            sx={{ width: '100%' }}
                         >
                             {title}
-                        </span>
+                        </Typography>
                     ) : (
                         <TextField
                             autoFocus
@@ -56,13 +80,11 @@ const Todo = ({ id, title, statusCheck }) => {
                             onChange={(e) => setChangeValue(e.target.value)}
                             onKeyDown={saveChanges}
                             size="small"
-                            InputLabelProps={{ className: 'textfield__label' }}
                         />
                     )}
-                </div>
+                </Box>
                 <div className="delete">
                     <HighlightOffIcon
-                        className="delete__btn"
                         onClick={handleDelTodo}
                         style={{
                             color: '#ff9ff3',

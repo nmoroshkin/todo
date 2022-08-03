@@ -1,9 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
-// import { getTodoFromLS } from '../../../utils/getTodoFromLS';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-// const tasks = getTodoFromLS();
+interface Task {
+    id: number;
+    title: string;
+    statusCheck: boolean;
+}
 
-const initialState = {
+interface StateTasks {
+    tasks: Task[];
+}
+
+const initialState: StateTasks = {
     tasks: [],
 };
 
@@ -11,13 +18,13 @@ const todoSlice = createSlice({
     name: 'todo',
     initialState,
     reducers: {
-        addTodo(state, action) {
+        addTodo(state, action: PayloadAction<Task>) {
             state.tasks.push(action.payload);
         },
-        removeTodo(state, action) {
+        removeTodo(state, action: PayloadAction<number>) {
             state.tasks = state.tasks.filter((task) => task.id !== action.payload);
         },
-        changeTodo(state, action) {
+        changeTodo(state, action: PayloadAction<{ id: number; changeValue: string }>) {
             const findIndex = state.tasks.findIndex((obj) => obj.id === action.payload.id);
             state.tasks = state.tasks.map((task) => {
                 if (findIndex >= 0) {
@@ -26,7 +33,7 @@ const todoSlice = createSlice({
                 return task;
             });
         },
-        checkTodo(state, action) {
+        checkTodo(state, action: PayloadAction<Task>) {
             const findIndex = state.tasks.findIndex((obj) => obj.id === action.payload.id);
             state.tasks = state.tasks.map((task) => {
                 if (findIndex >= 0) {

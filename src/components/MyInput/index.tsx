@@ -1,14 +1,21 @@
 import React from 'react';
-import { Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
+import { Box, Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 
 import { addTodo } from '../../redux/slices/todo/slice';
 
-const MyInput = ({ value, setValue }) => {
+type MyInputProps = {
+    value: string;
+    setValue: (text: string) => void;
+};
+
+const MyInput: React.FC<MyInputProps> = ({ value, setValue }) => {
     const dispatch = useDispatch();
 
-    const handleEnterTodo = (e) => {
+    const handleEnterTodo = (
+        e: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement> | any,
+    ) => {
         if ((e.key === 'Enter' || e.target.tagName === 'BUTTON') && value !== '') {
             const todo = {
                 id: Date.now(),
@@ -21,7 +28,15 @@ const MyInput = ({ value, setValue }) => {
     };
 
     return (
-        <div className="inputTodo">
+        <Box
+            sx={{
+                alignSelf: 'center',
+                marginBottom: '10px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+            }}
+        >
             <TextField
                 label="todo"
                 value={value}
@@ -39,7 +54,7 @@ const MyInput = ({ value, setValue }) => {
             >
                 +
             </Button>
-        </div>
+        </Box>
     );
 };
 
